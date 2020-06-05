@@ -1,0 +1,51 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    fstream plik;
+    plik.open("C:\\Users\\loniq\\Documents\\nauka do matury\\Rozwiązania\\2015\\Dane_PR2\\liczby.txt");
+
+    if (!plik.is_open())
+    {
+        cout << "Nie mozna otworzyc pliku!" << endl;
+        return 0;
+    }
+    
+    string tab[1000];
+    int ile = 0;
+    
+    //load data into array
+    
+    for (int i = 0; i < sizeof(tab); i++)
+    {
+        plik >> tab[i];
+    }
+
+    for (int i = 0; i < sizeof(tab); i++)
+    {
+        int ilosczer, iloscjedynek = 0;
+
+        for (int j = 0; j < tab[i].length(); j++)
+        {
+            if (tab[i].at(j) == '0')
+            {
+                ilosczer++;
+            }
+            else
+            {
+                iloscjedynek++;
+            }
+        }
+
+        if (ilosczer > iloscjedynek)
+        {
+            ile++;
+        }
+    }
+
+    cout << ile;
+    plik.close();
+}
